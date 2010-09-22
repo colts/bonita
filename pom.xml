@@ -288,7 +288,7 @@
 				dependencies to this location -->
 			<id>bos-deps</id>
 			<name>Bos Dependencies</name>
-			<url>http://dist.muleforge.org/mule-transport-bos/dependencies/maven2</url>
+			<url>http://dist.muleforge.org/bonita/dependencies/maven2/</url>
 			<snapshots>
 				<enabled>false</enabled>
 			</snapshots>
