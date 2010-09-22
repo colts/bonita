@@ -8,7 +8,7 @@
 	<packaging>jar</packaging>
 	<name>Mule Bos Transport</name>
 	<version>2.2.1</version>
-	<description>BOS bpm</description>
+	<description>BPM Transport making use of the Bonita BPM solution</description>
 
 	<properties>
 		<mule.version>2.2.1</mule.version>
