@@ -91,7 +91,19 @@ public class BosBpms implements BPMS
         
         massageProcessVariables(processVariables);
         
-        final ProcessInstanceUUID instanceUUID = runtimeAPI.instantiateProcess(processDef.getUUID(),processVariables);
+        ProcessInstanceUUID instanceUUID;
+        try
+        {
+            instanceUUID = runtimeAPI.instantiateProcess(processDef.getUUID(),processVariables);
+        }catch(BonitaInternalException x)
+        {
+            //This happens VERY RARELY...
+            x.printStackTrace();
+            log.warn("When attempting to instanciate process "+processDef.getUUID()+" the following exception was received:"+x.getMessage());
+            log.info("Retrying to instanciate process");                    
+            instanceUUID = runtimeAPI.instantiateProcess(processDef.getUUID(),processVariables);
+        }
+       
         log.info("Started Process " + instanceUUID);
         return instanceUUID;
     }

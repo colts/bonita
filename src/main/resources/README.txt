@@ -1,0 +1,1 @@
+For full instructions go to http://www.mulesoft.org/documentation/display/BOS/Home

@@ -11,12 +11,23 @@ Assembly descriptor for the full distribution.
         <fileSet>
             <directory>src</directory>
             <outputDirectory>src</outputDirectory>
+			<excludes>
+				<exclude>**/LICENSE.txt</exclude>
+				<exclude>**/README.txt</exclude>
+			</excludes>            
         </fileSet>
         <!-- If a licenses directory is present, copy it.  this would contain text files describing the licenses for each
              non-Mule dependencies -->
         <fileSet>
             <directory>licenses</directory>
             <outputDirectory>licenses</outputDirectory>
+        </fileSet>
+        <fileSet>
+        	<directory>src/main/resources</directory>
+        	<outputDirectory></outputDirectory>
+        	<includes>
+        		<include>*.txt</include>
+        	</includes>
         </fileSet>
     </fileSets>
     <dependencySets>
@@ -32,6 +43,7 @@ Assembly descriptor for the full distribution.
                 Add any 3rd party libraries here.  Note you can use wildcards i.e.
                 <include>net.sf.someproject:*</include>
                 -->
+                <include>org.ow2.bonita:bonita-server</include>
             </includes>
 
         </dependencySet>
