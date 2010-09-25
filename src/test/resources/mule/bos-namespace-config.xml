@@ -7,9 +7,7 @@
           http://www.mulesource.org/schema/mule/bos/2.2 http://www.mulesource.org/schema/mule/bos/2.2/mule-bos.xsd">
 
 	<bos:connector name="bosConnector" login="admin"
-		password="bpm" bonitaEnvironmentPath="src/test/resources/bonita/bonita-environment.xml" jassFilePath="src/test/resources/bonita/jaas-standard.cfg">
-		<bos:barFilePaths>
-			 <spring:value>src/test/resources/processes/example_1.0.bar</spring:value> 
-		</bos:barFilePaths>
+		password="bpm" bonitaEnvironmentPath="src/test/resources/bonita/bonita-environment.xml" jaasFilePath="src/test/resources/bonita/jaas-standard.cfg">
+		<bos:barFilePath>src/test/resources/processes/example_1.0.bar</bos:barFilePath> 		
 	</bos:connector>
 </mule>

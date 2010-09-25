@@ -52,7 +52,7 @@ public class BosConnector extends ProcessConnector
 	
 	String login = "admin";
 	String password = "bpm";
-	String jassFilePath;
+	String jaasFilePath;
 	String bonitaEnvironmentPath=null;
 	ArrayList<String> barFilePaths=new ArrayList<String>();
 	boolean undeployUnlistedProcesses=true;
@@ -65,13 +65,13 @@ public class BosConnector extends ProcessConnector
 	 * specified in the file path. Finally the bonita property representing of the API type is set. */
 	public void doInitialise() throws InitialisationException
     {
-	    logger.debug("jassFilePath is "+jassFilePath);
+	    logger.debug("jassFilePath is "+jaasFilePath);
 	    logger.debug("bonitaEnvironmentPath is "+bonitaEnvironmentPath);
 	    logger.debug("System Property "+BonitaConstants.JAAS_PROPERTY+" before being set is "+System.getProperty(BonitaConstants.JAAS_PROPERTY));
 	    logger.debug("System Property "+BonitaConstants.ENVIRONMENT_PROPERTY+" before being set is "+System.getProperty(BonitaConstants.ENVIRONMENT_PROPERTY));
-    	if(jassFilePath!=null)
+    	if(jaasFilePath!=null)
 		{
-			System.setProperty(BonitaConstants.JAAS_PROPERTY, jassFilePath);			
+			System.setProperty(BonitaConstants.JAAS_PROPERTY, jaasFilePath);			
 		}
 		if(bonitaEnvironmentPath!=null)
 		{
@@ -219,12 +219,12 @@ public class BosConnector extends ProcessConnector
 		this.password = password;
 	}
 
-	public String getJassFilePath() {
-		return jassFilePath;
+	public String getJaasFilePath() {
+		return jaasFilePath;
 	}
 
-	public void setJassFilePath(String jassFilePath) {
-		this.jassFilePath = jassFilePath;
+	public void setJaasFilePath(String jassFilePath) {
+		this.jaasFilePath = jassFilePath;
 	}
 
 	public ArrayList<String> getBarFilePaths() {

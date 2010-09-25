@@ -11,6 +11,7 @@ package org.mule.transport.bos.config;
 
 import org.mule.config.spring.handlers.AbstractMuleNamespaceHandler;
 import org.mule.config.spring.parsers.collection.ChildListDefinitionParser;
+import org.mule.config.spring.parsers.collection.ChildListEntryDefinitionParser;
 import org.mule.endpoint.URIBuilder;
 import org.mule.transport.bos.BosConnector;
 
@@ -25,6 +26,6 @@ public class BosNamespaceHandler extends AbstractMuleNamespaceHandler
         registerStandardTransportEndpoints(BosConnector.BOS, URIBuilder.PATH_ATTRIBUTES);
 
         registerConnectorDefinitionParser(BosConnector.class);
-        registerBeanDefinitionParser("barFilePaths", new ChildListDefinitionParser("barFilePaths"));
+        registerBeanDefinitionParser("barFilePath", new ChildListEntryDefinitionParser("barFilePaths"));
     }
 }

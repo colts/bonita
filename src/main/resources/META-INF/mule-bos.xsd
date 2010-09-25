@@ -69,14 +69,14 @@
     			-->
 
     			<xsd:sequence>
-    				<xsd:element name="barFilePaths"
-    					type="mule:listOrSetType" maxOccurs="1" minOccurs="0">
+    				<xsd:element name="barFilePath"
+    					type="xsd:string" maxOccurs="unbounded" minOccurs="0">
     				</xsd:element>
     			</xsd:sequence>
     			<xsd:attribute name="login" type="xsd:string"></xsd:attribute>
     			<xsd:attribute name="password" type="xsd:string"></xsd:attribute>
                 <xsd:attribute name="bonitaEnvironmentPath" type="xsd:string"></xsd:attribute>
-                <xsd:attribute name="jassFilePath" type="xsd:string"></xsd:attribute>
+                <xsd:attribute name="jaasFilePath" type="xsd:string"></xsd:attribute>
     			<xsd:attribute name="undeployUnlistedProcesses"
     				type="xsd:boolean">
     			</xsd:attribute>
@@ -135,6 +135,7 @@
         <xsd:attribute name="bar" type="xsd:string"/>
     -->
     </xsd:attributeGroup>
+
 
 
 </xsd:schema>

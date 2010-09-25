@@ -11,11 +11,8 @@
           http://www.mulesource.org/schema/mule/test/2.2 http://www.mulesource.org/schema/mule/test/2.2/mule-test.xsd">
 
 	<bos:connector name="bosConnector" login="admin"
-		password="bpm" bonitaEnvironmentPath="src/test/resources/bonita/bonita-environment.xml" jassFilePath="src/test/resources/bonita/jaas-standard.cfg" undeployUnlistedProcesses="true" redeployProcesses="true">
-		<bos:barFilePaths>
-			 <spring:value>src/test/resources/processes/LeaveApproval--1.0.bar</spring:value> 
-		</bos:barFilePaths>
-		
+		password="bpm" bonitaEnvironmentPath="src/test/resources/bonita/bonita-environment.xml" jaasFilePath="src/test/resources/bonita/jaas-standard.cfg" undeployUnlistedProcesses="true" redeployProcesses="true">
+		<bos:barFilePath>src/test/resources/processes/LeaveApproval--1.0.bar</bos:barFilePath>
 	</bos:connector>
 	
 	<vm:connector name="vmConnector" queueEvents="true" />
