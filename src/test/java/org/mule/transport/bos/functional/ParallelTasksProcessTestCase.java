@@ -29,7 +29,7 @@ public class ParallelTasksProcessTestCase extends FunctionalTestCase
     public void testParallelCalls() throws Exception
     {
         int requestCount=20;
-        MuleClient client=new MuleClient();
+        MuleClient client=new MuleClient(muleContext);
         ArrayList<String> results=new ArrayList<String>();
         
         //Kick Off processes
@@ -70,7 +70,7 @@ public class ParallelTasksProcessTestCase extends FunctionalTestCase
     
     protected void doTestSimple() throws Exception
     {
-        MuleClient client=new MuleClient();
+        MuleClient client=new MuleClient(muleContext);
         LinkedList<String> list = new LinkedList<String>();
         list.add("Stephen");
         list.add("Fenech");

@@ -28,7 +28,7 @@ public class HelloWorldTutorialV3TestCase extends FunctionalTestCase {
     
     public void testSimple() throws Exception
     {
-        MuleClient client = new MuleClient();
+        MuleClient client = new MuleClient(muleContext);
         
         //start a new Process
         MuleMessage msg=client.send("bos://HelloWorldTutorialV3", "",null);

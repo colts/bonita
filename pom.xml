@@ -6,11 +6,11 @@
 	<artifactId>mule-transport-bos</artifactId>
 	<packaging>jar</packaging>
 	<name>Mule Bos Transport</name>
-	<version>2.2.2-SNAPSHOT</version>
+	<version>3.x-SNAPSHOT</version>
 	<description>BPM Transport making use of the Bonita BPM solution</description>
 
 	<properties>
-		<mule.version>2.2.1</mule.version>
+		<mule.version>3.0.0</mule.version>
 		<bos.version>5.2.2</bos.version>
 		<!-- Tools properties -->
 		<jdk.version>1.5</jdk.version>
@@ -133,12 +133,16 @@
 					<artifactId>commons-collections</artifactId>
 					<groupId>commons-collections</groupId>
 				</exclusion>
+				<exclusion>
+					<groupId>asm</groupId>
+					<artifactId>asm</artifactId>
+				</exclusion>
 			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>com.ricston.bonitasoft.connectors</groupId>
 			<artifactId>bos-mule-connector</artifactId>
-			<version>${bos.version}</version>
+			<version>${bos.version}-${mule.version}</version>
 			<exclusions>
 				<exclusion>
 					<groupId>org.mule.modules</groupId>

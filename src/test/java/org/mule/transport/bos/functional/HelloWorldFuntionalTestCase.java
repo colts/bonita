@@ -41,7 +41,7 @@ public class HelloWorldFuntionalTestCase extends FunctionalTestCase
     public void testParallelCalls() throws Exception
     {
         int requestCount=20;
-        MuleClient client=new MuleClient();
+        MuleClient client=new MuleClient(muleContext);
         ArrayList<String> results=new ArrayList<String>();
         
         //Set the destination name variable
@@ -78,7 +78,7 @@ public class HelloWorldFuntionalTestCase extends FunctionalTestCase
     
     public void doTestSimple() throws Exception
     {
-        MuleClient client=new MuleClient();
+        MuleClient client=new MuleClient(muleContext);
         
         //Set the destination name variable
         Map props=new HashMap();

@@ -10,6 +10,7 @@
 package org.mule.transport.bos;
 
 import org.mule.api.DefaultMuleException;
+import org.mule.api.MuleContext;
 import org.mule.api.MuleException;
 import org.mule.api.lifecycle.InitialisationException;
 import org.mule.api.transport.ConnectorException;
@@ -59,6 +60,11 @@ public class BosConnector extends ProcessConnector
 	boolean redeployProcesses=false;
 	
 	BosBpms bosBpms;
+	
+	public BosConnector(MuleContext context)
+    {
+        super(context);
+    }
 	
 	/* Initializes the Jass property retrieved from the file specified in the file path. 
 	 * The same is done for the Bonita Environment property which is retrieved through the file 
