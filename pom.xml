@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.mule.transports</groupId>
 	<artifactId>mule-transport-bos</artifactId>
 	<packaging>jar</packaging>
 	<name>Mule Bos Transport</name>
-	<version>2.2.1-SNAPSHOT</version>
+	<version>2.2.1</version>
 	<description>BPM Transport making use of the Bonita BPM solution</description>
 
 	<properties>
@@ -236,10 +235,10 @@
 	</issueManagement>
 
 	<scm>
-		<connection>scm:svn:http://svn.muleforge.org/bonita/</connection>
-		<developerConnection>scm:svn:https://svn.muleforge.org/bonita/</developerConnection>
+		<connection>scm:svn:http://svn.muleforge.org/bonita/tags/mule-transport-bos-2.2.1</connection>
+		<developerConnection>scm:svn:https://svn.muleforge.org/bonita/tags/mule-transport-bos-2.2.1</developerConnection>
 		<tag>HEAD</tag>
-		<url>http://svn.bonita.muleforge.org/</url>
+		<url>http://svn.bonita.muleforge.org/tags/mule-transport-bos-2.2.1</url>
 	</scm>
 
 
