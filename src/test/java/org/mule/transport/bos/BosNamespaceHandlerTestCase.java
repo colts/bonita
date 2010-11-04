@@ -33,7 +33,7 @@ public class BosNamespaceHandlerTestCase extends FunctionalTestCase
         assertEquals("bpm",c.getPassword());
         assertEquals("src/test/resources/bonita/jaas-standard.cfg",c.getJaasFilePath());
         assertEquals(1,c.getBarFilePaths().size());
-        assertEquals("src/test/resources/processes/example_1.0.bar",c.getBarFilePaths().get(0));
+        assertEquals("src/test/resources/processes/Example--1.0.bar",c.getBarFilePaths().get(0));
 
     }
 }

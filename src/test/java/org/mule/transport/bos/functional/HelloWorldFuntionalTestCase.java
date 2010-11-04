@@ -28,7 +28,7 @@ public class HelloWorldFuntionalTestCase extends FunctionalTestCase
         Thread.sleep(500);
     }
     
-    public void testMultipleSimple() throws Exception
+    public void stestMultipleSimple() throws Exception
     {
         for(int i=0;i<3;i++)
         {
@@ -38,7 +38,7 @@ public class HelloWorldFuntionalTestCase extends FunctionalTestCase
         Thread.sleep(500);
     }
     
-    public void testParallelCalls() throws Exception
+    public void stestParallelCalls() throws Exception
     {
         int requestCount=20;
         MuleClient client=new MuleClient(muleContext);

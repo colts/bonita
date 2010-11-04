@@ -22,6 +22,7 @@ import org.ow2.bonita.facade.runtime.ProcessInstance;
 import org.ow2.bonita.facade.runtime.TaskInstance;
 import org.ow2.bonita.facade.uuid.ProcessDefinitionUUID;
 import org.ow2.bonita.facade.uuid.ProcessInstanceUUID;
+import org.ow2.bonita.identity.auth.DomainOwner;
 import org.ow2.bonita.util.AccessorUtil;
 import org.ow2.bonita.util.BonitaConstants;
 import org.ow2.bonita.util.BusinessArchiveFactory;
@@ -39,7 +40,7 @@ public class BosRuntimeTestCase extends TestCase
 
     private static final String LOGIN = "admin";
     private static final String PASSWORD = "bpm";
-    private static final String BAR_FILE_PATH = "src/test/resources/processes/example_1.0.bar";
+    private static final String BAR_FILE_PATH = "src/test/resources/processes/Example--1.0.bar";
     private static final String JAAS_FILE_PATH = "src/test/resources/bonita/jaas-standard.cfg";
     private static final String BOS_ENV = "src/test/resources/bonita/bonita-environment.xml";
 
@@ -59,9 +60,9 @@ public class BosRuntimeTestCase extends TestCase
         Collection<TaskInstance> tasks = null;
 
         // login
-        LoginContext loginContext = new LoginContext("Bonita", new SimpleCallbackHandler(LOGIN, PASSWORD));
+        LoginContext loginContext = new LoginContext("Bonita", new SimpleCallbackHandler(LOGIN, PASSWORD));        
         loginContext.login();
-
+        
         // clear everything, just in case there is any state left.
         managementAPI.deleteAllProcesses();
 
@@ -90,7 +91,7 @@ public class BosRuntimeTestCase extends TestCase
 
         // get the first task in the list which must be "task1"
         final TaskInstance task1 = tasks.iterator().next();
-        assertEquals("task1",task1.getActivityName());
+        assertEquals("Step1",task1.getActivityName());
 
 
         // execute task1 and assign it to me
@@ -103,7 +104,7 @@ public class BosRuntimeTestCase extends TestCase
 
         // get the first task in the list which must be "task1"
         final TaskInstance task2 = tasks.iterator().next();
-        assertEquals("task2",task2.getActivityName());
+        assertEquals("Step2",task2.getActivityName());
 
         // assign task2 to another user
         runtimeAPI.assignTask(task2.getUUID(), "john");

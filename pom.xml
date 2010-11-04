@@ -6,12 +6,12 @@
 	<artifactId>mule-transport-bos</artifactId>
 	<packaging>jar</packaging>
 	<name>Mule Bos Transport</name>
-	<version>3.x-SNAPSHOT</version>
+	<version>3.0.0</version>
 	<description>BPM Transport making use of the Bonita BPM solution</description>
 
 	<properties>
 		<mule.version>3.0.0</mule.version>
-		<bos.version>5.2.2</bos.version>
+		<bos.version>5.3</bos.version>
 		<!-- Tools properties -->
 		<jdk.version>1.5</jdk.version>
 	</properties>
@@ -129,13 +129,25 @@
 			<artifactId>bonita-server</artifactId>
 			<version>${bos.version}</version>
 			<exclusions>
+<!--				<exclusion>-->
+<!--					<artifactId>commons-collections</artifactId>-->
+<!--					<groupId>commons-collections</groupId>-->
+<!--				</exclusion>-->
+<!--				<exclusion>-->
+<!--					<groupId>asm</groupId>-->
+<!--					<artifactId>asm</artifactId>-->
+<!--				</exclusion>-->
+<!--				<exclusion>-->
+<!--					<artifactId>commons-logging</artifactId>-->
+<!--					<groupId>commons-logging</groupId>-->
+<!--				</exclusion>-->
 				<exclusion>
-					<artifactId>commons-collections</artifactId>
-					<groupId>commons-collections</groupId>
+					<artifactId>slf4j-api</artifactId>
+					<groupId>org.slf4j</groupId>
 				</exclusion>
 				<exclusion>
-					<groupId>asm</groupId>
-					<artifactId>asm</artifactId>
+					<artifactId>slf4j-jdk14</artifactId>
+					<groupId>org.slf4j</groupId>
 				</exclusion>
 			</exclusions>
 		</dependency>

@@ -344,13 +344,10 @@ public class BosBpms implements BPMS
     protected void login() throws LoginException
     {
         // TODO make the possibility for Mule to log in as Multiple users
-        if(loginContext==null)
-        {
-            LoginContext ctx = new LoginContext("BonitaStore", new SimpleCallbackHandler(login, password));        
-            ctx.login();
-            loginContext=ctx;
-            log.info("Logged in as " + managementAPI.getLoggedUser());
-        }
+    	//Log in every time
+        LoginContext ctx = new LoginContext("Bonita", new SimpleCallbackHandler(login, password));        
+        ctx.login();
+        log.info("Logged in as " + managementAPI.getLoggedUser());        
     }
     
     protected void logout() throws LoginException
