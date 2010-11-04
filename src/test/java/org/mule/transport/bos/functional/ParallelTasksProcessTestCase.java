@@ -9,9 +9,11 @@
  */
 package org.mule.transport.bos.functional;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+import org.apache.commons.io.FileUtils;
 import org.mule.api.MuleMessage;
 import org.mule.module.client.MuleClient;
 import org.mule.tck.FunctionalTestCase;
@@ -19,6 +21,13 @@ import org.mule.tck.FunctionalTestCase;
 public class ParallelTasksProcessTestCase extends FunctionalTestCase
 {
 
+	@Override
+	protected void suitePreSetUp() throws Exception {
+    	//delete work directory mainly due to version changes of bonita which are not backward compatible
+    	FileUtils.deleteDirectory(new File(".mule-bonita"));
+		super.doSetUp();
+	}
+	
     public void testSimple() throws Exception
     {
         doTestSimple();

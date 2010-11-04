@@ -9,6 +9,9 @@
  */
 package org.mule.transport.bos;
 
+import java.io.File;
+
+import org.apache.commons.io.FileUtils;
 import org.mule.tck.FunctionalTestCase;
 
 /**
@@ -20,6 +23,15 @@ public class BosNamespaceHandlerTestCase extends FunctionalTestCase
     {
         return "mule/bos-namespace-config.xml";
     }
+    
+    
+    
+    @Override
+	protected void suitePreSetUp() throws Exception {
+    	//delete work directory mainly due to version changes of bonita which are not backward compatible
+    	FileUtils.deleteDirectory(new File(".mule-bonita"));
+		super.doSetUp();
+	}
 
     public void testBosConfig() throws Exception
     {

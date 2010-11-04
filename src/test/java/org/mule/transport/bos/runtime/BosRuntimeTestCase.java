@@ -9,6 +9,7 @@ import javax.security.auth.login.LoginContext;
 
 import junit.framework.TestCase;
 
+import org.apache.commons.io.FileUtils;
 import org.ow2.bonita.facade.ManagementAPI;
 import org.ow2.bonita.facade.QueryDefinitionAPI;
 import org.ow2.bonita.facade.QueryRuntimeAPI;
@@ -54,6 +55,13 @@ public class BosRuntimeTestCase extends TestCase
         System.setProperty(BonitaConstants.JAAS_PROPERTY, JAAS_FILE_PATH);
         System.setProperty(BonitaConstants.ENVIRONMENT_PROPERTY, BOS_ENV);
     }
+    
+    @Override
+    protected void setUp() throws Exception {
+    	//delete work directory mainly due to version changes of bonita which are not backward compatible
+    	FileUtils.deleteDirectory(new File(".mule-bonita"));
+    	super.setUp();
+	}
 
     public void testStartRuntime() throws Exception
     {
