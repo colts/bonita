@@ -9,6 +9,13 @@
  */
 package org.mule.transport.bos;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Set;
+
+import javax.security.auth.login.LoginException;
+
 import org.mule.api.DefaultMuleException;
 import org.mule.api.MuleContext;
 import org.mule.api.MuleException;
@@ -17,16 +24,6 @@ import org.mule.api.transport.ConnectorException;
 import org.mule.config.i18n.MessageFactory;
 import org.mule.transport.bpm.BPMS;
 import org.mule.transport.bpm.ProcessConnector;
-
-import com.ricston.bonitasoft.connectors.mule.MuleManager;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Set;
-
-import javax.security.auth.login.LoginContext;
-import javax.security.auth.login.LoginException;
-
 import org.ow2.bonita.facade.ManagementAPI;
 import org.ow2.bonita.facade.QueryDefinitionAPI;
 import org.ow2.bonita.facade.QueryRuntimeAPI;
@@ -37,7 +34,8 @@ import org.ow2.bonita.facade.uuid.ProcessDefinitionUUID;
 import org.ow2.bonita.util.AccessorUtil;
 import org.ow2.bonita.util.BonitaConstants;
 import org.ow2.bonita.util.BusinessArchiveFactory;
-import org.ow2.bonita.util.SimpleCallbackHandler;
+
+import com.ricston.bonitasoft.connectors.mule.MuleManager;
 
 /**
  * <code>BosConnector</code> TODO document
@@ -113,9 +111,30 @@ public class BosConnector extends ProcessConnector
         ArrayList<ProcessDefinitionUUID> pUUIDs=new ArrayList<ProcessDefinitionUUID>();
 		try {
 			login();
+			HashMap<String,BusinessArchive> businessArchiveCache=new HashMap<String,BusinessArchive>();
+			if(redeployProcesses)
+			{
+				Set<ProcessDefinition> alreadyDeployed=queryDefinitionAPI.getProcesses();
+				for(int i=barFilePaths.size()-1;i>=0;i--)
+				{
+					BusinessArchive businessArchive = BusinessArchiveFactory.getBusinessArchive(new File(barFilePaths.get(i)));
+					businessArchiveCache.put(barFilePaths.get(i), businessArchive);
+					if(alreadyDeployed.contains(businessArchive.getProcessDefinition()))
+					{
+						managementAPI.deleteProcess(businessArchive.getProcessUUID());
+					}
+				}
+			}
 			for (String s : barFilePaths) {
 				logger.info("Starting Deployment of "+s);
-				ProcessDefinitionUUID puuid=deployBarFile(s);
+				ProcessDefinitionUUID puuid;
+				if(businessArchiveCache.containsKey(s))
+				{
+					puuid=deployBarFile(businessArchiveCache.get(s));
+				}else
+				{
+					puuid=deployBarFile(BusinessArchiveFactory.getBusinessArchive(new File(s)));					
+				}
 				pUUIDs.add(puuid);
 				registerContext(puuid.toString());				
 			}
@@ -167,15 +186,8 @@ public class BosConnector extends ProcessConnector
         MuleManager.getInstance().registerContext(s, getMuleContext());
     }
     
-    /* Retrieves the file specified in the string and a business archive 
-     * is created as an object from the file retrieved. 
-     * If the file is found and redeploying is enabled in the connector, 
-     * it will delete the process. Finally the process is deployed. */
-	private ProcessDefinitionUUID deployBarFile(String s) throws Exception{
-		final File barFile = new File(s);
-		final BusinessArchive businessArchive = BusinessArchiveFactory
-				.getBusinessArchive(barFile);
-		
+    /* Deployes bar file if not already deployed */
+	private ProcessDefinitionUUID deployBarFile(BusinessArchive businessArchive) throws Exception{
 		//Check if process is already deployed
 		Set<ProcessDefinition> alreadyDeployed=queryDefinitionAPI.getProcesses();
 		ProcessDefinition processDefn=businessArchive.getProcessDefinition();
@@ -183,15 +195,7 @@ public class BosConnector extends ProcessConnector
 	    {
 		    ProcessDefinition p=queryDefinitionAPI.getProcess(processDefn.getUUID());
 		    logger.info("Process "+p.getUUID()+" is already deployed.");
-		    if(redeployProcesses)
-		    {
-		        logger.info("Deleting "+p.getUUID()+" for Redeployment");
-		        managementAPI.deleteProcess(p.getUUID());
-		    }else
-		    {
-		        logger.info("Not Deploying "+p.getUUID()+" since already deployed and redeployProcesses is false");
-		        return p.getUUID();
-		    }
+		    return p.getUUID();
 	    }
 
 		 final ProcessDefinition process = managementAPI.deploy(businessArchive);
