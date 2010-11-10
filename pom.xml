@@ -6,7 +6,7 @@
 	<artifactId>mule-transport-bos</artifactId>
 	<packaging>jar</packaging>
 	<name>Mule Bos Transport</name>
-	<version>3.0.0</version>
+	<version>5.3-3.0.0</version>
 	<description>BPM Transport making use of the Bonita BPM solution</description>
 
 	<properties>
