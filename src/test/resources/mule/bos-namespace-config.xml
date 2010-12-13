@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mule xmlns="http://www.mulesource.org/schema/mule/core/2.2"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bos="http://www.mulesource.org/schema/mule/bos/2.2"
+<mule xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bos="http://www.mulesoft.org/schema/mule/bos"
 	xmlns:spring="http://www.springframework.org/schema/beans"
 	xsi:schemaLocation="
-          http://www.mulesource.org/schema/mule/core/2.2 http://www.mulesource.org/schema/mule/core/2.2/mule.xsd
-          http://www.mulesource.org/schema/mule/bos/2.2 http://www.mulesource.org/schema/mule/bos/2.2/mule-bos.xsd">
+          http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/3.0/mule.xsd
+          http://www.mulesoft.org/schema/mule/bos http://www.mulesoft.org/schema/mule/bos/3.0/mule-bos.xsd">
 
 	<bos:connector name="bosConnector" login="admin"
 		password="bpm" bonitaEnvironmentPath="src/test/resources/bonita/bonita-environment.xml" jaasFilePath="src/test/resources/bonita/jaas-standard.cfg">
-		<bos:barFilePath>src/test/resources/processes/example_1.0.bar</bos:barFilePath> 		
+		<bos:barFilePath>src/test/resources/processes/Example--1.0.bar</bos:barFilePath> 		
 	</bos:connector>
 </mule>

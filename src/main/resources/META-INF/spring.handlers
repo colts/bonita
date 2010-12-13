@@ -1,1 +1,1 @@
-http\://www.mulesource.org/schema/mule/bos/2.2=org.mule.transport.bos.config.BosNamespaceHandler
+http\://www.mulesoft.org/schema/mule/bos=org.mule.transport.bos.config.BosNamespaceHandler

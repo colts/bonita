@@ -4,6 +4,9 @@
       <!-- Description: Implementation of the BlobStrategy interface which will be used to store Blobs. -->
       <object name='blob-strategy' class='org.ow2.bonita.type.lob.BlobStrategyBlob' />
 
+      <!-- Description: Implementation of the Classdata loader Service. -->
+      <classdata-loader name='classdata-loader' class='org.ow2.bonita.runtime.ClassDataLoader'/>
+
       <!-- Description: Implementation of the LobCreator interface which will be used to store Clobs. -->
       <object name='clob-strategy' class='org.ow2.bonita.type.lob.ClobStrategyChopped' />
 
@@ -13,6 +16,9 @@
         <environment-interceptor />
         <standard-transaction-interceptor />
       </command-service>
+
+      <!-- Description: Specify the domain of this environment -->
+      <domain id='default' />
 
       <!-- Description: Service which executes events -->
       <event-executor idle-min='50' idle='10000' threads='3' auto-start='true' command-service='command-service'/>
@@ -51,14 +57,14 @@
       <!-- Description: Implementation of the LobCreator interface which will be used to create SQL Blobs, Clobs. -->
       <object name='lob-creator' class='org.ow2.bonita.services.impl.HibernateLobCreator' />
 
-      <!-- Description: Service used to find the user logged in. -->
-      <object name='security' class='org.ow2.bonita.facade.StandardSecurityContext' />
-
       <!-- Description: Mapping from java variable to database type -->
       <variable-types resource='bonita.type.resolver.xml' />
 
       <!-- Description: Implementation of the UUID Service. -->
       <uuid-service name='uuid-service' class='org.ow2.bonita.services.impl.DbUUIDService'/>
+
+      <!-- Description: Properties of variables management. -->
+      <variables store-history='true'/>
 
     </environment-factory>
 
@@ -76,7 +82,9 @@
       <!-- Description: List of archivers. -->
       <chainer name='archiver'>
         <!-- Description: Archiver which writes archived data to logs. -->
+        <!--
         <archiver class='org.ow2.bonita.services.impl.LoggerArchiver' />
+         -->
         <!-- Description: Reference to the history -->
         <ref object='history' />
       </chainer>
@@ -141,9 +149,13 @@
       <!-- Description: List of recorders. -->
       <chainer name='recorder'>
         <!-- Description: Recorder which writes recorded data to logs. -->
+        <!--
         <recorder class='org.ow2.bonita.services.impl.LoggerRecorder' />
+         -->
         <!-- Description: Reference to the journal -->
         <ref object='journal' />
+        <!-- Mule Recorder which is responsible to start/stop the Embedded Mule server -->
+<!--        <recorder class="com.ricston.bonitasoft.connectors.mule.MuleRecorder"/>-->
       </chainer>
 
       <!-- Description: Db Transaction. -->
